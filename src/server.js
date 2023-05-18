@@ -1,6 +1,8 @@
 const express = require('express')
 const helmet = require('helmet')
 const routes = require('./app/routes')
+const { Logger } = require('./core/Shared/infrastructure/Logger')
+const Response = require('./core/Shared/infrastructure/Response')
 
 function startServer (port) {
   const app = express()
@@ -12,9 +14,14 @@ function startServer (port) {
   app.use(helmet.frameguard({ action: 'deny' }))
   app.use('/api', routes)
 
+  app.use((error, _req, res, _next) => {
+    Logger.error(error)
+    Response.error(res, error, null, error.status)
+  })
+
   return new Promise((resolve) => {
     app.listen(port, () => {
-      console.log('server running on port', port)
+      Logger.info(`Server running on port ${port}`)
       resolve()
     })
   })
