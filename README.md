@@ -1,8 +1,10 @@
-# JavaScript Backend Example
+<h1 align="center">
+    🔧 JavaScript Backend Example
+</h1>
 
 This is an example of a JavaScript backend with a basic implementation of the hexagonal architecture.
 
-## Deployment
+## 🚀 Deployment
 
 To deploy this project locally, follow these steps:
 
