@@ -30,7 +30,7 @@ async function createNote (note) {
 async function updateNote (id, data) {
   try {
     const database = getDB()
-    await database.collection('notes').updateOne({ _id: new ObjectId(id) }, data, { upsert: true })
+    await database.collection('notes').updateOne({ _id: new ObjectId(id) }, { $set: data }, { upsert: true })
   } catch (error) {
     Logger.error('Error al obtener usuarios', error)
     throw new Error('Error on update note')
